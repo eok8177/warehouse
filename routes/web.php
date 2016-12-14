@@ -11,6 +11,21 @@
 |
 */
 
+// Backend
+
+Route::get('backend', function () {
+    return redirect('backend/dashboard');
+});
+
+Route::group(['namespace' => 'Backend', 'prefix' => 'backend', 'middleware' => 'auth'], function() {
+
+    // Dashboard
+    Route::get('dashboard',       ['as' => 'backend.dashboard', 'uses' => 'DashboardController@index']);
+    Route::post('dashboard/save', ['as' => 'backend.save',      'uses' => 'DashboardController@save']);
+});
+
+// Frontend
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -18,3 +33,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+
+Route::get('/migrate', function()
+{
+    $exitCode = Artisan::call('migrate');
+});

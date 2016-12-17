@@ -21,15 +21,11 @@
 
 <body>
   <div id="wrapper">
-    <nav class="navbar navbar-default navbar-static-top">
-      @include('backend.navbar')
-    </nav>
+
+    @include('backend.navbar')
 
     <div class="container-fluid">
-      <div class="btn-group-vertical col-md-2" role="group" aria-label="...">
-        <h3>Left menu</h3>
-        <a href="{{ route('backend.dashboard') }}">Dashboard</a>
-      </div>
+      <div class="col-md-2">@include('backend.sidebar')</div>
 
       <div class="col-md-10">@yield('content')</div>
     </div>

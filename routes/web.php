@@ -32,6 +32,8 @@ Route::group(['as' => 'backend.', 'middleware' => 'auth', 'namespace' => 'Backen
    // DELETE  /lpz/{lpz}                  destroy lpz.destroy
     Route::resource('lpz', 'LpzController');
 
+    Route::resource('work', 'WorkController');
+
 });
 
 // Frontend

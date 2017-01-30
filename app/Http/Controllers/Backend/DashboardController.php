@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Model\Work;
+
 class DashboardController extends Controller
 {
     /**
@@ -24,14 +26,8 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard.index');
+        return view('backend.dashboard.index', [
+            'works' => Work::orderBy('id', 'desc')->limit(50)->get(),
+            ]);
     }
-
-    /**
-     * Save data to DB
-     * @param Request $request
-     * @return mixed
-     */
-    public function save(Request $request)
-    {}
 }

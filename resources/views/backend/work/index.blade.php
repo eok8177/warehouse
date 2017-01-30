@@ -14,6 +14,8 @@
       <th>@lang('messages.category')</th>
       <th>@lang('messages.invoice')</th>
       <th>@lang('messages.summ')</th>
+      <th>@lang('messages.description')</th>
+      <th>@lang('messages.date')</th>
     </tr>
   </thead>
   @foreach($items as $item)
@@ -28,6 +30,8 @@
       <td>{{$item->cat->name}}</td>
       <td>{{$item->invoice}}</td>
       <td>{{$item->summ}}</td>
+      <td>{{$item->description}}</td>
+      <td>{{$item->created_at}}</td>
     </tr>
   @endforeach
 </table>

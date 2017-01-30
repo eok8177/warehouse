@@ -19,7 +19,7 @@
       <td>
         <a href="{{ route('backend.lpz.show', ['id'=>$item->id]) }}" class="btn fa fa-eye"></a>
         <a href="{{ route('backend.lpz.edit', ['id'=>$item->id]) }}" class="btn fa fa-pencil"></a>
-        <a href="{{ route('backend.lpz.destroy', ['id'=>$item->id]) }}" class="btn fa fa-trash-o delete"></a>
+        <!-- <a href="{{ route('backend.lpz.destroy', ['id'=>$item->id]) }}" class="btn fa fa-trash-o delete"></a> -->
       </td>
       <td>{{$item->name}}</td>
     </tr>

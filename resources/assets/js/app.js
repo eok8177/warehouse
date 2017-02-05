@@ -13,8 +13,28 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example', require('./components/Example.vue'));
+// Vue.component('example', require('./components/Example.vue'));
 
-const app = new Vue({
-    el: '#app'
+// const app = new Vue({
+//     el: '#app'
+// });
+
+$(function () {
+  $('.ajax').on('click', function(e){
+    var modal =  $($(this).data('target'));
+    $.ajax({
+      type: "GET",
+      url: $(this).attr('href'),
+      dataType: 'json',
+      success: function(data)
+      {
+        modal.html(data.html);
+      },
+      error: function(data)
+      {
+        modal.html("<p>"+$.parseJSON(data.responseText).title[0]);
+      }
+    });
+    e.preventDefault();
+  });
 });

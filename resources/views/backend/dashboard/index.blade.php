@@ -30,10 +30,11 @@
       <td>{{$item->invoice}}</td>
       <td>{{$item->summ}}</td>
       <td>{{$item->description}}</td>
-      <td>{{Carbon\Carbon::parse($item->created_at)->format('d-m-Y')}}</td>
+      <td>{{ $item->created_at->format('d-m-Y') }}</td>
     </tr>
   @endforeach
 </table>
+
 
 
 @endsection

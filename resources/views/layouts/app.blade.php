@@ -43,7 +43,12 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        @if (Auth::guest())
+                            &nbsp;
+                        @else
+                            <li><a href="{{ route('backend.dashboard') }}">@lang('messages.comp')</a></li>
+                            <li><a href="{{ route('sklad.dashboard') }}">@lang('sklad.sklad')</a></li>
+                        @endif
                     </ul>
 
                     <!-- Right Side Of Navbar -->

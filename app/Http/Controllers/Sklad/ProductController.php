@@ -13,9 +13,22 @@ use App\Http\Requests\IncomingRequest;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        return view('sklad.product.index', ['items' => Product::all()]);
+        $bill = $request->input('bill', 0);
+        $title = $request->input('title', false);
+
+        $bills = Bill::all();
+
+        $items = Product::orderBy('title', 'asc');
+
+        if ($bill > 0) $items = $items->where('bill_id', '=', $bill);
+        if ($title) $items = $items->where('title', 'LIKE', '%'.$title.'%');
+
+        return view('sklad.product.index', [
+            'items' => $items->get(),
+            'bills' => $bills
+            ]);
     }
 
     public function create()

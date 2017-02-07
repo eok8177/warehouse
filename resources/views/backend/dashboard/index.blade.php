@@ -13,7 +13,7 @@
       <th>@lang('messages.lpz')</th>
       <th>@lang('messages.category')</th>
       <th>@lang('messages.invoice')</th>
-      <th>@lang('messages.summ')</th>
+      <th>@lang('messages.sum')</th>
       <th>@lang('messages.description')</th>
       <th>@lang('messages.date')</th>
     </tr>

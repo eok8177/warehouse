@@ -85,7 +85,7 @@
 
 <style type="text/css">
   #productsList {
-    max-height: 600px;
+    max-height: 500px;
     overflow-y: auto;
   }
 </style>

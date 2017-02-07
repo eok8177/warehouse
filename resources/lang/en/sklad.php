@@ -1,6 +1,8 @@
 <?php
 
 return [
+    'all' => 'Усі',
+    'search' => 'Пошук',
     'sklad' => 'Склад',
     'catalog' => 'Довідник',
     'catalogs' => 'Довідники',

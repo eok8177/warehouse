@@ -3,12 +3,27 @@
 @section('content')
 <h1 class="page-header">@lang('sklad.products')</h1>
 
-<a href="{{ route('sklad.product.create') }}" class="btn fa fa-plus"> @lang('sklad.create')</a>
+  <span>@lang('sklad.bill'): </span>
+<div class="btn-group" role="group">
+  <a href="{{ route('sklad.product.index') }}" class="btn btn-default">@lang('sklad.all')</a>
+  @foreach($bills as $bill)
+  <a href="{{ route('sklad.product.index') }}?bill={{$bill->id}}" class="btn btn-default">{{$bill->title}}</a>
+  @endforeach
+</div>
+<form class="form-inline pull-right" action="" method="get">
+  <div class="form-group">
+    <input type="hidden" name="bill" value="{{app('request')->input('bill')}}">
+     <input type="text" class="form-control" id="title" name="title" placeholder="{{app('request')->input('title')}}">
+  </div>
+  <button type="submit" class="btn btn-default">@lang('sklad.search')</button>
+</form>
+
+<p><a href="{{ route('sklad.product.create') }}" class="btn fa fa-plus"> @lang('sklad.create')</a>
 
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>id</th>
+      <th>@lang('sklad.bill')</th>
       <th>Action</th>
       <th>@lang('sklad.title')</th>
       <th>@lang('sklad.measure')</th>
@@ -19,7 +34,7 @@
   </thead>
   @foreach($items as $item)
     <tr>
-      <td>{{$item->id}}</td>
+      <td>{{$item->bill->title}}</td>
       <td>
         <a href="{{ route('sklad.product.show', ['id'=>$item->id]) }}" class="btn fa fa-eye" data-toggle="tooltip" data-placement="top" title="@lang('sklad.show')"></a>
         <a href="{{ route('sklad.product.edit', ['id'=>$item->id]) }}" class="btn fa fa-pencil" data-toggle="tooltip" data-placement="top" title="@lang('sklad.edit')"></a>

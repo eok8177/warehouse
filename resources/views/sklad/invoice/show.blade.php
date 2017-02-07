@@ -15,7 +15,7 @@
     <tr>
       <td>{{$invoice->title}}</td>
       <td>{{$invoice->supplier->title}}</td>
-      <td>{{$invoice->price}}</td>
+      <td>{{$invoice->products->sum('sum')}}</td>
       <td>{{$invoice->date}}</td>
     </tr>
 </table>
@@ -30,14 +30,10 @@
       <th>@lang('sklad.measure')</th>
       <th>@lang('sklad.quantity')</th>
       <th>@lang('sklad.price')</th>
-      <th>@lang('sklad.summ')</th>
+      <th>@lang('sklad.sum')</th>
       <th>@lang('sklad.action')</th>
     </tr>
   </thead>
-
-  @php
-    $summ = 0
-  @endphp
 
   @foreach($invoice->products as $incoming)
   <tr>
@@ -50,11 +46,7 @@
       <a href="{{ route('sklad.incoming.destroy', ['id'=>$incoming->id]) }}" class="btn fa fa-trash-o delete"></a>
     </td>
   </tr>
-  @php
-    $summ += $incoming->count * $incoming->price
-  @endphp
   @endforeach
-  <tr><td colspan="4"></td><td>{{$summ}}</td><td></td</tr>
 </table>
 
 <hr>

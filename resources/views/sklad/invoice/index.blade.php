@@ -21,9 +21,9 @@
     <tr>
       <td>{{$item->id}}</td>
       <td>
-        <a href="{{ route('sklad.invoice.show', ['id'=>$item->id]) }}" class="btn fa fa-eye"></a>
-        <a href="{{ route('sklad.invoice.edit', ['id'=>$item->id]) }}" class="btn fa fa-pencil"></a>
-        @if(count($item->products) == 0)<a href="{{ route('sklad.invoice.destroy', ['id'=>$item->id]) }}" class="btn fa fa-trash-o delete"></a>@endif
+        <a href="{{ route('sklad.invoice.show', ['id'=>$item->id]) }}" class="btn fa fa-eye" data-toggle="tooltip" data-placement="top" title="@lang('sklad.show')"></a>
+        <a href="{{ route('sklad.invoice.edit', ['id'=>$item->id]) }}" class="btn fa fa-pencil" data-toggle="tooltip" data-placement="top" title="@lang('sklad.edit')"></a>
+        @if(count($item->products) == 0)<a href="{{ route('sklad.invoice.destroy', ['id'=>$item->id]) }}" class="btn fa fa-trash-o delete" data-toggle="tooltip" data-placement="top" title="@lang('sklad.delete')"></a>@endif
       </td>
       <td>{{$item->title}}</td>
       <td>{{$item->supplier->title}}</td>

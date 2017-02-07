@@ -20,6 +20,10 @@ require('./bootstrap');
 // });
 
 $(function () {
+
+  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="modal"]').tooltip();
+
   $('.ajax').on('click', function(e){
     var modal =  $($(this).data('target'));
     $.ajax({

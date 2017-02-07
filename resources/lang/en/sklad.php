@@ -2,46 +2,54 @@
 
 return [
     'sklad' => 'Склад',
-    'catalog' => 'Справочник',
-    'catalogs' => 'Справочники',
-    'add' => 'Добавить',
-    'create' => 'Создать',
-    'save' => 'Сохранить',
-    'select' => 'Выбрать',
-    'title' => 'Название',
-    'description' => 'Описание',
-    'category' => 'Категория',
-    'incoming' => 'Приход',
-    'outcoming' => 'Уход',
+    'catalog' => 'Довідник',
+    'catalogs' => 'Довідники',
+    'add' => 'Додати',
+    'create' => 'Створити',
+    'save' => 'Зберегти',
+    'select' => 'Вибрати',
+    'title' => 'Назва',
+    'description' => 'Примітка',
+    'category' => 'Категорія',
+    'incoming' => 'Надійшло',
+    'outcoming' => 'Відпущено',
 
-    'bill' => 'Счёт',
-    'bills' => 'Счета',
+    'bill' => 'Рахунок',
+    'bills' => 'Рахунки',
 
-    'report' => 'Отчет',
-    'reports' => 'Отчеты',
+    'report' => 'Звіт',
+    'reports' => 'Звіти',
 
-    'invoice' => 'Накладная',
-    'invoices' => 'Накладные',
+    'invoice' => 'Накладна',
+    'invoices' => 'Накладні',
 
-    'sum' => 'Сумма',
+    'sum' => 'Сума',
 
-    'invoice_title' => 'Номер счета',
+    'invoice_title' => 'Номер рахунка',
 
-    'supplier' => 'Поставщик',
-    'suppliers' => 'Поставщики',
+    'supplier' => 'Постачальник',
+    'suppliers' => 'Постачальники',
 
-    'client' => 'Клиент',
-    'clients' => 'Клиенты',
+    'client' => 'Клієнт',
+    'clients' => 'Клієнти',
 
-    'price' => 'Цена',
+    'price' => 'Ціна',
     'date' => 'Дата',
 
     'product' => 'Товар',
-    'products' => 'Товары',
-    'measure' => 'Ед. измерения',
-    'count' => 'Количество',
-    'quantity' => 'Количество',
+    'products' => 'Товари',
+    'measure' => 'Од. виміру',
+    'count' => 'Кількість',
+    'quantity' => 'Кількість',
 
-    'selectclient' => 'Выберите клиента',
+    'selectclient' => 'Виберіть клієнта',
+    'averageprice' => 'середня ціна',
+
+    'show' => 'Переглянути',
+    'edit' => 'Редагувати',
+    'out' => 'Відпустити',
+    'delete' => 'Видалити',
+    'selectproduct' => 'Оберіть товар',
+    'addnew' => 'Створіть',
 
 ];

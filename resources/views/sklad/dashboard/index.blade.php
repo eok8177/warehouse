@@ -17,8 +17,8 @@
     <tr>
       <td>{{$item->id}}</td>
       <td>
-        <a href="{{ route('sklad.product.show', ['id'=>$item->id]) }}" class="btn fa fa-eye"></a>
-        <a href="{{ route('sklad.product.edit', ['id'=>$item->id]) }}" class="btn fa fa-pencil"></a>
+        <a href="{{ route('sklad.product.show', ['id'=>$item->id]) }}" class="btn fa fa-eye" data-toggle="tooltip" data-placement="top" title="@lang('sklad.show')"></a>
+        <a href="{{ route('sklad.product.edit', ['id'=>$item->id]) }}" class="btn fa fa-pencil" data-toggle="tooltip" data-placement="top" title="@lang('sklad.edit')"></a>
       </td>
       <td>{{$item->title}}</td>
       <td>{{$item->measure}}</td>

@@ -11,12 +11,14 @@
             <th>@lang('sklad.title')</th>
             <th>@lang('sklad.measure')</th>
             <th>@lang('sklad.quantity')</th>
+            <th>@lang('sklad.averageprice')</th>
           </tr>
         </thead>
         <tr>
           <td>{{$product->title}}</td>
           <td>{{$product->measure}}</td>
           <td>{{$product->quantity}}</td>
+          <td>{{$product->sum / $product->quantity}}</td>
         </tr>
       </table>
 
@@ -44,7 +46,14 @@
             <div class="form-group">
               {!! Form::label('count', Lang::get('sklad.count'), ['class' => 'col-md-6 control-label']) !!}
               <div class="col-md-6">
-                {!! Form::text('count', '', ['class' => 'form-control', 'autofocus']) !!}
+                {!! Form::text('count', '', ['class' => 'form-control']) !!}
+              </div>
+            </div>
+
+            <div class="form-group">
+              {!! Form::label('description', Lang::get('sklad.description'), ['class' => 'col-md-6 control-label']) !!}
+              <div class="col-md-6">
+                {!! Form::text('description', '', ['class' => 'form-control']) !!}
               </div>
             </div>
 
@@ -65,7 +74,7 @@
               @endforeach
             </ul>
 
-
+            <h4>@lang('sklad.addnew')</h4>
             <div class="form-group">
               {!! Form::label('title', Lang::get('sklad.title'), ['class' => 'control-label']) !!}
               {!! Form::text('title', '', ['class' => 'form-control', 'autofocus']) !!}

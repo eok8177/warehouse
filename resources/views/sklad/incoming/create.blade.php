@@ -51,7 +51,7 @@
 
           <ul id="productsList">
             @foreach($products as $product)
-            <li><a href="#" data-id="{{$product->id}}">{{$product->title}} /({{$product->measure}})</a></li>
+            <li><a href="#" data-id="{{$product->id}}">{{$product->title}} /({{$product->measure}}) / ({{number_format($product->sum / $product->quantity, 2)}}грн)</a></li>
             @endforeach
           </ul>
 

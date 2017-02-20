@@ -27,7 +27,7 @@
       </td>
       <td>{{$item->title}}</td>
       <td>{{$item->supplier->title}}</td>
-      <td>{{$item->price}}</td>
+      <td>{{$item->products->sum('sum')}}</td>
       <td>{{$item->date}}</td>
       <td>{{count($item->products)}}</td>
     </tr>

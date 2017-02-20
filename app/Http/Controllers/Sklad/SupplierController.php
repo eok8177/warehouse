@@ -14,7 +14,7 @@ class SupplierController extends Controller
 {
     public function index()
     {
-        return view('sklad.supplier.index', ['items' => Supplier::all()]);
+        return view('sklad.supplier.index', ['items' => Supplier::orderBy('title', 'asc')->get()]);
     }
 
     public function create()

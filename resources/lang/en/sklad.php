@@ -21,6 +21,7 @@ return [
 
     'report' => 'Звіт',
     'reports' => 'Звіти',
+    'report_full' => 'Розгорнутий звіт',
 
     'invoice' => 'Накладна',
     'invoices' => 'Накладні',

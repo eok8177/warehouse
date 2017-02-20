@@ -16,7 +16,7 @@ class OutcomingController extends Controller
     {
         $returnHTML = view('sklad.outcoming.create', [
             'product' => $product,
-            'clients' => Client::all(),
+            'clients' => Client::orderBy('title', 'asc')->get(),
             ])->render();
 
         return response()->json(array('success' => true, 'html'=>$returnHTML));
@@ -33,6 +33,7 @@ class OutcomingController extends Controller
         $outcoming->product->save();
 
         $outcoming->sum = $sum;
+        $outcoming->date = $outcoming->created_at;
         $outcoming->save();
 
         return redirect()->route('sklad.product.show', ['id' => $outcoming->product->id]);

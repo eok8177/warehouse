@@ -16,7 +16,7 @@ class IncomingController extends Controller
     {
         $returnHTML = view('sklad.incoming.create', [
             'invoice' => $invoice,
-            'products' => Product::all(),
+            'products' => Product::orderBy('title', 'asc')->get(),
             ])->render();
 
         return response()->json(array('success' => true, 'html'=>$returnHTML));
@@ -32,6 +32,9 @@ class IncomingController extends Controller
         $incoming->product->quantity += $incoming->count;
         $incoming->product->sum += $incoming->count * $incoming->price;
         $incoming->product->save();
+
+        $incoming->date = $incoming->invoice->date;
+        $incoming->save();
 
         return redirect()->route('sklad.invoice.show', ['id' => $incoming->invoice_id]);
     }

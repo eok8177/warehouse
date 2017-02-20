@@ -41,9 +41,14 @@
     <td>{{$incoming->product->measure}}</td>
     <td>{{$incoming->count}}</td>
     <td>{{$incoming->price}}</td>
-    <td>{{$incoming->count * $incoming->price}}</td>
+    <td>{{$incoming->sum}}</td>
     <td>
+      @if (count($incoming->product->outcoming) == 0)
       <a href="{{ route('sklad.incoming.destroy', ['id'=>$incoming->id]) }}" class="btn fa fa-trash-o delete"></a>
+      @endif
+      @if ($incoming->product->quantity > 0)
+      <a href="{{ route('sklad.outcoming.create', ['id'=>$incoming->product->id]) }}" class="ajax btn fa fa-sign-out" data-toggle="modal" data-target="#outcoming" title="@lang('sklad.out')"></a>
+      @endif
     </td>
   </tr>
   @endforeach
@@ -55,6 +60,7 @@
 
 <!-- Modal -->
 <div class="modal fade" id="incoming" tabindex="-1" role="dialog" aria-labelledby="incomingLabel"></div>
+<div class="modal fade" id="outcoming" tabindex="-1" role="dialog" aria-labelledby="outcomingLabel"></div>
 @endsection
 
 @section('scripts')

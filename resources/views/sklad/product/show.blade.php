@@ -6,6 +6,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
+      <th>@lang('sklad.action')</th>
       <th>@lang('sklad.title')</th>
       <th>@lang('sklad.measure')</th>
       <th>@lang('sklad.quantity')</th>
@@ -13,6 +14,12 @@
     </tr>
   </thead>
     <tr>
+      <td>
+        <a href="{{ route('sklad.product.edit', ['id'=>$product->id]) }}" class="btn fa fa-pencil" data-toggle="tooltip" data-placement="top" title="@lang('sklad.edit')"></a>
+        @if ($product->quantity > 0)
+        <a href="{{ route('sklad.outcoming.create', ['id'=>$product->id]) }}" class="ajax btn fa fa-sign-out" data-toggle="modal" data-target="#outcoming" title="@lang('sklad.out')"></a>
+        @endif
+      </td>
       <td>{{$product->title}}</td>
       <td>{{$product->measure}}</td>
       <td>{{$product->quantity}}</td>
@@ -61,4 +68,7 @@
     </tr>
   @endforeach
 </table>
+
+<!-- Modal -->
+<div class="modal fade" id="outcoming" tabindex="-1" role="dialog" aria-labelledby="outcomingLabel"></div>
 @endsection

@@ -34,7 +34,7 @@
   </thead>
   @foreach($items as $item)
     <tr>
-      <td>{{$item->bill->title}}</td>
+      <td>{{($item->bill) ? $item->bill->title : ''}}</td>
       <td>
         <a href="{{ route('sklad.product.show', ['id'=>$item->id]) }}" class="btn fa fa-eye" data-toggle="tooltip" data-placement="top" title="@lang('sklad.show')"></a>
         <a href="{{ route('sklad.product.edit', ['id'=>$item->id]) }}" class="btn fa fa-pencil" data-toggle="tooltip" data-placement="top" title="@lang('sklad.edit')"></a>

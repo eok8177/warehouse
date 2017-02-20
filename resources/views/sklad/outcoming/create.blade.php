@@ -124,6 +124,9 @@ $(function () {
       success: function(data)
       {
         listItems.append('<li><a href="#" data-id="'+data.id+'">'+data.title+'</a></li>');
+        $('#client_name').text(data.title);
+        $('#client_id').val(data.id);
+        $('#clientSelect').removeClass('in');
       },
       error: function(data)
       {

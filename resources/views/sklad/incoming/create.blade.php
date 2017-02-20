@@ -51,7 +51,7 @@
 
           <ul id="productsList">
             @foreach($products as $product)
-            <li><a href="#" data-id="{{$product->id}}">{{$product->title}} /({{$product->measure}}) / ({{number_format($product->sum / $product->quantity, 2)}}грн)</a></li>
+            <li><a href="#" data-id="{{$product->id}}">{{$product->title}} /({{$product->measure}}) / ({{ ($product->quantity > 0) ? number_format($product->sum/$product->quantity, 2) : '0'}}грн)</a></li>
             @endforeach
           </ul>
 
@@ -85,7 +85,7 @@
 
 <style type="text/css">
   #productsList {
-    max-height: 500px;
+    max-height: 320px;
     overflow-y: auto;
   }
 </style>
@@ -113,6 +113,9 @@ $(function () {
       success: function(data)
       {
         listItems.append('<li><a href="#" data-id="'+data.id+'">'+data.title+'</a></li>');
+        $('#product_name').text(data.title);
+        $('#product_id').val(data.id);
+        $('#productSelect').removeClass('in');
       },
       error: function(data)
       {

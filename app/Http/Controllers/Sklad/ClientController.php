@@ -14,7 +14,7 @@ class ClientController extends Controller
 {
     public function index()
     {
-        return view('sklad.client.index', ['items' => Client::all()]);
+        return view('sklad.client.index', ['items' => Client::orderBy('title', 'asc')->get()]);
     }
 
     public function create()

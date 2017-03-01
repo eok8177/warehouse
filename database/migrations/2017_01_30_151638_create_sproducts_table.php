@@ -21,8 +21,8 @@ class CreateSproductsTable extends Migration
 
             $table->string('title');
             $table->string('measure')->nullable();
-            $table->integer('quantity')->nullable();
-            $table->float('sum')->nullable();
+            $table->decimal('quantity', 12, 2)->nullable();
+            $table->decimal('sum', 20, 8)->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
         });

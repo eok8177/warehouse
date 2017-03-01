@@ -20,7 +20,7 @@ class CreateSinvoicesTable extends Migration
             $table->unsignedInteger('supplier_id');
             $table->foreign('supplier_id')->references('id')->on('s_suppliers');
 
-            $table->float('price')->nullable();
+            $table->decimal('price', 20, 8)->nullable();
             $table->date('date')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();

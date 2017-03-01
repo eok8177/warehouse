@@ -22,9 +22,9 @@ class CreateSincomingTable extends Migration
             $table->unsignedInteger('product_id');
             $table->foreign('product_id')->references('id')->on('s_products');
 
-            $table->integer('count');
-            $table->float('price')->nullable();
-            $table->float('sum')->nullable();
+            $table->decimal('count', 12, 2);
+            $table->decimal('price', 20, 8)->nullable();
+            $table->decimal('sum', 20, 8)->nullable();
             $table->date('date')->nullable();
             $table->text('description')->nullable();
             $table->timestamps();

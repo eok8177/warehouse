@@ -1,16 +1,35 @@
 @extends('sklad.layouts.default')
 
 @section('content')
-<h1 class="page-header">@lang('sklad.reports')</h1>
+<h1 class="page-header">@lang('sklad.report')</h1>
 
-{!! Form::open(['route' => ['sklad.report.create'], 'method' => 'POST', 'class' => 'form-inline']) !!}
+{!! Form::open(['route' => ['sklad.report.simple'], 'method' => 'POST', 'class' => 'form-inline']) !!}
 
   <div class="form-group">
-    {!! Form::text('from', '', ['class' => 'form-control', 'autofocus', 'id' => 'from']) !!}
+    {!! Form::text('from', '', ['class' => 'form-control from']) !!}
   </div>
 
   <div class="form-group">
-    {!! Form::text('to', '', ['class' => 'form-control', 'id' => 'to']) !!}
+    {!! Form::text('to', '', ['class' => 'form-control to']) !!}
+  </div>
+
+  <div class="form-group">
+    {!! Form::submit(Lang::get('sklad.create')) !!}
+  </div>
+{!! Form::close() !!}
+
+
+
+<h1 class="page-header">@lang('sklad.report_full')</h1>
+
+{!! Form::open(['route' => ['sklad.report.full'], 'method' => 'POST', 'class' => 'form-inline']) !!}
+
+  <div class="form-group">
+    {!! Form::text('from', '', ['class' => 'form-control from']) !!}
+  </div>
+
+  <div class="form-group">
+    {!! Form::text('to', '', ['class' => 'form-control to']) !!}
   </div>
 
   <div class="form-group">
@@ -29,8 +48,8 @@
   <script>
   $( function() {
     $.datepicker.setDefaults($.datepicker.regional[ "uk" ]);
-    $( "#from" ).datepicker({dateFormat: "yy-mm-dd"});
-    $( "#to" ).datepicker({dateFormat: "yy-mm-dd"});
+    $( ".from" ).datepicker({dateFormat: "yy-mm-dd"});
+    $( ".to" ).datepicker({dateFormat: "yy-mm-dd"});
   } );
   </script>
 @endsection

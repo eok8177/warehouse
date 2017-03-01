@@ -28,4 +28,13 @@ class Bill extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    static function forSelect()
+    {
+        return $this
+            ->where('id', '>', 1)
+            ->get()
+            ->lists('path_titles', 'id')
+            ->toArray();
+    }
 }

@@ -26,7 +26,7 @@ Route::get('backend', function () {
   return redirect('backend/dashboard');
 });
 
-Route::group(['as' => 'backend.', 'middleware' => 'auth', 'namespace' => 'Backend', 'prefix' => 'backend'], function() {
+Route::group(['as' => 'backend.', 'middleware' => 'roles', 'roles' => 'admin', 'namespace' => 'Backend', 'prefix' => 'backend'], function() {
 
     // Dashboard
   Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
@@ -38,7 +38,7 @@ Route::group(['as' => 'backend.', 'middleware' => 'auth', 'namespace' => 'Backen
 });
 
 
-Route::group(['as' => 'sklad.', 'middleware' => 'auth', 'namespace' => 'Sklad', 'prefix' => 'sklad'], function() {
+Route::group(['as' => 'sklad.', 'middleware' => 'roles','roles' =>['admin', 'sklad'], 'namespace' => 'Sklad', 'prefix' => 'sklad'], function() {
 
   Route::get('/', 'DashboardController@index');
 

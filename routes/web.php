@@ -59,8 +59,10 @@ Route::group(['as' => 'sklad.', 'middleware' => 'roles','roles' =>['admin', 'skl
 
 // Outcoming
   Route::get('outcoming/{product}',      ['as' => 'outcoming.create', 'uses' => 'OutcomingController@create']);
-  Route::post('outcoming',               ['as' => 'outcoming', 'uses' => 'OutcomingController@store']);
+  Route::get('outcoming/{outcoming}/edit', ['as' => 'outcoming.edit', 'uses' => 'OutcomingController@edit']);
+  Route::post('outcoming',               ['as' => 'outcoming.store', 'uses' => 'OutcomingController@store']);
   Route::delete('outcoming/{outcoming}', ['as' => 'outcoming.destroy', 'uses' => 'OutcomingController@destroy']);
+  Route::put('outcoming/{outcoming}', ['as' => 'outcoming.update', 'uses' => 'OutcomingController@update']);
 
 // Reports
   Route::get('report',  ['as' => 'report.index',  'uses' => 'ReportController@index']);

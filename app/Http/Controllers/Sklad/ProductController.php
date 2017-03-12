@@ -20,7 +20,7 @@ class ProductController extends Controller
 
         $bills = Bill::all();
 
-        $items = Product::orderBy('title', 'asc');
+        $items = Product::with('bill', 'incoming', 'outcoming')->orderBy('title', 'asc');
 
         if ($bill > 0) $items = $items->where('bill_id', '=', $bill);
         if ($title) $items = $items->where('title', 'LIKE', '%'.$title.'%');

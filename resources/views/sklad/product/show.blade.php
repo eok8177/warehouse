@@ -1,7 +1,7 @@
 @extends('sklad.layouts.default')
 
 @section('content')
-<h3 class="page-header">@lang('sklad.product')</h3>
+<h3 class="page-header">@lang('sklad.product'): {{$product->title}}</h3>
 
 <table class="table table-hover">
   <thead>
@@ -57,18 +57,54 @@
       <th>@lang('sklad.client')</th>
       <th>@lang('sklad.count')</th>
       <th>@lang('sklad.sum')</th>
+      <th>@lang('sklad.action')</th>
     </tr>
   </thead>
   @foreach($product->outcoming as $outcoming)
     <tr>
-      <td>{{$outcoming->created_at}}</td>
+      <td title="created: {{$outcoming->created_at}}  updated: {{$outcoming->updated_at}}" class="initialism">
+        {{$outcoming->date}}
+      </td>
       <td>{{$outcoming->client->title}}</td>
       <td>{{$outcoming->count}} {{$product->measure}}</td>
       <td>{{$outcoming->sum}}</td>
+      <td>
+        <a href="{{ route('sklad.outcoming.edit', ['id'=>$outcoming->id]) }}" class="ajax btn fa fa-pencil" data-toggle="modal" data-target="#outcoming"></a>
+        <a href="{{ route('sklad.outcoming.destroy', ['id'=>$outcoming->id]) }}" class="btn fa fa-trash-o delete" data-toggle="tooltip" data-placement="top" title="@lang('sklad.delete')"></a>
+      </td>
     </tr>
   @endforeach
+    <tr>
+      <td colspan="2"></td>
+      <td>{{$product->outcoming->sum('count')}}</td>
+      <td>{{$product->outcoming->sum('sum')}}</td>
+    </tr>
 </table>
 
 <!-- Modal -->
 <div class="modal fade" id="outcoming" tabindex="-1" role="dialog" aria-labelledby="outcomingLabel"></div>
+@endsection
+
+
+@section('scripts')
+  <script>
+  $(function () {
+    $.ajaxSetup({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+    });
+    $('.delete').on('click', function (e) {
+      if (!confirm("@lang('sklad.confirm_delete')")) return false;
+    e.preventDefault();
+      $.post({
+          type: 'DELETE',  // destroy Method
+          url: $(this).attr("href")
+      }).done(function (data) {
+          console.log(data);
+          location.reload(true);
+      });
+    });
+  });
+</script>
 @endsection

@@ -15,10 +15,9 @@
           </tr>
         </thead>
         <tr>
-          <td>{{$product->title}}</td>
-          <td>{{$product->measure}}</td>
-          <td>{{$product->quantity}}</td>
-          <td>{{$product->sum / $product->quantity}}</td>
+          <td>{{$outcoming->product->title}}</td>
+          <td>{{$outcoming->product->measure}}</td>
+          <td>{{$outcoming->product->quantity}}</td>
         </tr>
       </table>
 
@@ -30,37 +29,37 @@
 
           <div class="col-md-6">
 
-            {!! Form::open(['route' => ['sklad.outcoming.store'], 'method' => 'POST', 'class' => 'form-horizontal', 'id' => 'outcoming']) !!}
+            {!! Form::open(['route' => ['sklad.outcoming.update', $outcoming->id], 'method' => 'PUT', 'class' => 'form-horizontal', 'id' => 'outcoming']) !!}
 
             <div class="form-group">
               {!! Form::label('client_id', Lang::get('sklad.client'), ['class' => 'col-md-6 control-label']) !!}
               <div class="col-md-6">
-                {!! Form::hidden('client_id', '', ['class' => 'form-control']) !!}
-                <span id="client_name"></span>&nbsp;
+                {!! Form::hidden('client_id', $outcoming->client->id, ['class' => 'form-control']) !!}
+                <span id="client_name">{{$outcoming->client->title}}</span>&nbsp;
                 <button type="button" class="btn btn-sm" data-toggle="collapse" data-target="#clientSelect" aria-expanded="false" aria-controls="clientSelect">@lang('sklad.select')</button>
               </div>
             </div>
 
-            {!! Form::hidden('product_id', $product->id, ['class' => 'form-control']) !!}
+            {!! Form::hidden('product_id', $outcoming->product->id, ['class' => 'form-control']) !!}
 
             <div class="form-group">
               {!! Form::label('count', Lang::get('sklad.count'), ['class' => 'col-md-6 control-label']) !!}
               <div class="col-md-6">
-                {!! Form::text('count', '', ['class' => 'form-control']) !!}
+                {!! Form::text('count', $outcoming->count, ['class' => 'form-control']) !!}
               </div>
             </div>
 
             <div class="form-group">
               {!! Form::label('date', Lang::get('sklad.date'), ['class' => 'col-md-6 control-label']) !!}
               <div class="col-md-6">
-                {!! Form::text('date', date('Y-m-d'), ['class' => 'form-control']) !!}
+                {!! Form::text('date', $outcoming->date, ['class' => 'form-control']) !!}
               </div>
             </div>
 
             <div class="form-group">
               {!! Form::label('description', Lang::get('sklad.description'), ['class' => 'col-md-6 control-label']) !!}
               <div class="col-md-6">
-                {!! Form::text('description', '', ['class' => 'form-control']) !!}
+                {!! Form::text('description', $outcoming->description, ['class' => 'form-control']) !!}
               </div>
             </div>
 

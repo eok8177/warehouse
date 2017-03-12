@@ -10,6 +10,8 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+
     <!-- Styles -->
     <link href="/css/app.css" rel="stylesheet">
 
@@ -46,8 +48,11 @@
                         @if (Auth::guest())
                             &nbsp;
                         @else
-                            <li><a href="{{ route('backend.dashboard') }}">@lang('messages.comp')</a></li>
+                            @if (Auth::user()->role == 'admin')
+                                <li><a href="{{ route('backend.dashboard') }}">@lang('messages.comp')</a></li>
+                            @endif
                             <li><a href="{{ route('sklad.dashboard') }}">@lang('sklad.sklad')</a></li>
+                            
                         @endif
                     </ul>
 

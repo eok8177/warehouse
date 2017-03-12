@@ -7,7 +7,7 @@
 <div class="btn-group" role="group">
   <a href="{{ route('sklad.product.index') }}" class="btn btn-default">@lang('sklad.all')</a>
   @foreach($bills as $bill)
-  <a href="{{ route('sklad.product.index') }}?bill={{$bill->id}}" class="btn btn-default">{{$bill->title}}</a>
+  <a href="{{ route('sklad.product.index') }}?bill={{$bill->id}}" class="btn btn-default"  data-toggle="tooltip" data-placement="top" title="{{$bill->description}}">{{$bill->title}}</a>
   @endforeach
 </div>
 <form class="form-inline pull-right" action="" method="get">

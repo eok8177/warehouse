@@ -11,6 +11,7 @@
   <title>{{ config('app.name', 'Laravel') }}</title>
 
   <!-- Styles -->
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
   <link href="/css/app.css" rel="stylesheet">
   @yield('styles')
 
@@ -41,6 +42,8 @@
 
   <!-- Scripts -->
   <script src="/js/app.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="/js/datepicker-uk.js"></script>
   @yield('scripts')
 </body>
 

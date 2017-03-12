@@ -27,7 +27,7 @@ class ReportController extends Controller
         $from = ($request->input('from')) ? $request->input('from') : date('Y-m-d');
         $to = ($request->input('to')) ? $request->input('to') : date('Y-m-d');
 
-        $products = Product::orderBy('bill_id', 'asc')->get();
+        // $products = Product::orderBy('bill_id', 'asc')->get();
 
         $report = DB::table('s_products as sp')
             ->select(DB::raw("sp.*, s_bills.title as bill, 
@@ -51,6 +51,9 @@ class ReportController extends Controller
 
                     "))
             ->leftJoin('s_bills', 's_bills.id', '=', 'sp.bill_id')
+
+            ->orderBy('sp.bill_id', 'asc')
+            ->orderBy('sp.title', 'asc')
 
             ->get();
 
@@ -100,6 +103,9 @@ class ReportController extends Controller
                 ))
             ->leftJoin('s_bills', 's_bills.id', '=', 'sp.bill_id')
 
+            ->orderBy('sp.bill_id', 'asc')
+            ->orderBy('sp.title', 'asc')
+
             ->get();
 
 
@@ -148,6 +154,9 @@ class ReportController extends Controller
             .$condition
                 ))
             ->leftJoin('s_bills', 's_bills.id', '=', 'sp.bill_id')
+
+            ->orderBy('sp.bill_id', 'asc')
+            ->orderBy('sp.title', 'asc')
 
             ->get();
 

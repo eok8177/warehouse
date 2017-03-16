@@ -45,7 +45,7 @@
             <div class="form-group">
               {!! Form::label('count', Lang::get('sklad.count'), ['class' => 'col-md-6 control-label']) !!}
               <div class="col-md-6">
-                {!! Form::text('count', $outcoming->count, ['class' => 'form-control']) !!}
+                {!! Form::text('count', $outcoming->count, ['class' => 'form-control', 'onchange' => "this.value = this.value.replace(/,/g, '.')"]) !!}
               </div>
             </div>
 

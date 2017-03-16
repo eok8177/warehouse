@@ -26,14 +26,14 @@
           <div class="form-group">
             {!! Form::label('count', Lang::get('sklad.quantity'), ['class' => 'col-md-6 control-label']) !!}
             <div class="col-md-6">
-              {!! Form::text('count', '', ['class' => 'form-control']) !!}
+              {!! Form::text('count', '', ['class' => 'form-control', 'onchange' => "this.value = this.value.replace(/,/g, '.')"]) !!}
             </div>
           </div>
 
           <div class="form-group">
             {!! Form::label('price', Lang::get('sklad.price'), ['class' => 'col-md-6 control-label']) !!}
             <div class="col-md-6">
-              {!! Form::text('price', '', ['class' => 'form-control']) !!}
+              {!! Form::text('price', '', ['class' => 'form-control', 'onchange' => "this.value = this.value.replace(/,/g, '.')"]) !!}
             </div>
           </div>
 

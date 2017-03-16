@@ -119,7 +119,7 @@ class ReportController extends Controller
 
 
 
-    public function excel($from, $to)
+    public function excel($from, $to, $type = 'full')
     {
         $clients = Client::orderBy('title', 'asc')->pluck('title', 'id')->toArray();
 
@@ -166,14 +166,17 @@ class ReportController extends Controller
         array_push($titleArray0, 'Рахунок', 'Найменування', 'од',"Залишок на $from","",'Надійшло', '','Відпущено', '');
         array_push($titleArray1, '', '', '',"Кіл-ть","Сумма",'Кіл-ть', 'Сумма','Кіл-ть', 'Сумма');
 
-        foreach ($clients as $id => $title) {
-            $count = 'c_count_'.$id;
-            $sum = 'c_sum_'.$id;
-            if ($report->sum($sum) == 0) continue;
-            array_push($titleArray0, $title, '');
-            array_push($titleArray1, 'Кіл-ть');
-            array_push($titleArray1, 'Сумма');
+        if ($type == 'full') {
+            foreach ($clients as $id => $title) {
+                $count = 'c_count_'.$id;
+                $sum = 'c_sum_'.$id;
+                if ($report->sum($sum) == 0) continue;
+                array_push($titleArray0, $title, '');
+                array_push($titleArray1, 'Кіл-ть');
+                array_push($titleArray1, 'Сумма');
+            }
         }
+
         array_push($titleArray0, "Залишок на $to", "");
         array_push($titleArray1, "Кіл-ть", "Сумма");
 
@@ -194,12 +197,14 @@ class ReportController extends Controller
             $array[] = (float) $item->out_count;
             $array[] = (float) $item->out_sum;
 
-            foreach ($clients as $id => $title) {
-                $count = 'c_count_'.$id;
-                $sum = 'c_sum_'.$id;
-                if ($report->sum($sum) == 0) continue;
-                $array[] = (float) $item->$count;
-                $array[] = (float) $item->$sum;
+            if ($type == 'full') {
+                foreach ($clients as $id => $title) {
+                    $count = 'c_count_'.$id;
+                    $sum = 'c_sum_'.$id;
+                    if ($report->sum($sum) == 0) continue;
+                    $array[] = (float) $item->$count;
+                    $array[] = (float) $item->$sum;
+                }
             }
 
             $array[] = $item->end_in_count - $item->end_out_count;

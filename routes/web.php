@@ -68,7 +68,7 @@ Route::group(['as' => 'sklad.', 'middleware' => 'roles','roles' =>['admin', 'skl
   Route::get('report',  ['as' => 'report.index',  'uses' => 'ReportController@index']);
   Route::post('report', ['as' => 'report.simple', 'uses' => 'ReportController@simple']);
   Route::post('report/full', ['as' => 'report.full', 'uses' => 'ReportController@full']);
-  Route::get('report/excel/{from}/{to}', ['as' => 'report.excel', 'uses' => 'ReportController@excel']);
+  Route::get('report/excel/{from}/{to}/{type}', ['as' => 'report.excel', 'uses' => 'ReportController@excel']);
 
 });
 

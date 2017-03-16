@@ -10,6 +10,7 @@ use App\Http\Requests\InvoiceRequest;
 
 use App\Model\Sklad\Product;
 use App\Model\Sklad\Supplier;
+use App\Model\Sklad\Incoming;
 
 class InvoiceController extends Controller
 {
@@ -34,6 +35,7 @@ class InvoiceController extends Controller
     {
         return view('sklad.invoice.show', [
             'invoice' => $invoice,
+            'incomings' => Incoming::with('product', 'product.outcoming')->where('invoice_id',$invoice->id)->get(),
             'products' => Product::all(),
             ]);
     }

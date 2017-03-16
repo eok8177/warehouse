@@ -25,7 +25,6 @@ class IncomingController extends Controller
     public function store(IncomingRequest $request, Incoming $incoming)
     {
         $newIncoming = $request->all();
-        $newIncoming['price'] = strtr($newIncoming['price'], ',', '.');
         $newIncoming['sum'] = $newIncoming['price'] * $newIncoming['count'];
         $incoming = $incoming->create($newIncoming);
 

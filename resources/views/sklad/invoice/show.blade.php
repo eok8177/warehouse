@@ -35,7 +35,7 @@
     </tr>
   </thead>
 
-  @foreach($invoice->products as $incoming)
+  @foreach($incomings as $incoming)
   <tr>
     <td>{{$incoming->product->title}}</td>
     <td>{{$incoming->product->measure}}</td>
@@ -43,7 +43,7 @@
     <td>{{$incoming->price}}</td>
     <td>{{$incoming->sum}}</td>
     <td>
-      @if (count($incoming->product->outcoming) == 0)
+      @if (count($incoming->product->outcoming) == 0 OR count($incoming->product->outcoming->where('date', '>=', $incoming->date)) == 0)
       <a href="{{ route('sklad.incoming.destroy', ['id'=>$incoming->id]) }}" class="btn fa fa-trash-o delete"></a>
       @endif
       @if ($incoming->product->quantity > 0)

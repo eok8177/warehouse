@@ -29,7 +29,7 @@ class IncomingRequest extends FormRequest
             'invoice_id' => 'required',
             'product_id' => 'required',
             'count' => 'required|numeric',
-            // 'price' => 'numeric',
+            'price' => 'numeric',
         ];
     }
 }

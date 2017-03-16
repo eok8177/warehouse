@@ -3,7 +3,7 @@
 @section('content')
 <h1 class="page-header">
   @lang('sklad.report') з {{$from}} по {{$to}}
-  {!! link_to_route('sklad.report.excel', 'Export to Excel', ['from' => $from, 'to' => $to], ['class' => 'btn btn-info pull-right']) !!}
+  {!! link_to_route('sklad.report.excel', 'Export to Excel', ['from' => $from, 'to' => $to, 'type' => 'full'], ['class' => 'btn btn-info pull-right']) !!}
 </h1>
 
 

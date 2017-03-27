@@ -33,7 +33,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('sklad.product.create', ['bills' => Bill::pluck('title', 'id')->all()]);
+        return view('sklad.product.create', ['bills' => Bill::forSelect()]);
     }
 
     public function store(ProductRequest $request, Product $product)
@@ -60,7 +60,7 @@ class ProductController extends Controller
     {
         return view('sklad.product.edit', [
             'product' => $product,
-            'bills' => Bill::pluck('title', 'id')->all(),
+            'bills' => Bill::forSelect(),
             ]);
     }
 

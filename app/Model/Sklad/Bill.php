@@ -29,12 +29,12 @@ class Bill extends Model
         return $this->hasMany(Product::class);
     }
 
-    static function forSelect()
+    public static function forSelect()
     {
-        return $this
-            ->where('id', '>', 1)
-            ->get()
-            ->lists('path_titles', 'id')
-            ->toArray();
+        $bils = array();
+        foreach (Bill::all() as $bill) {
+            $bils[$bill->id] = $bill->title . ' - ' . $bill->description;
+        }
+        return $bils;
     }
 }

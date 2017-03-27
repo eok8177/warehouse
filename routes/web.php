@@ -88,3 +88,9 @@ Route::get('/home', 'HomeController@index');
 // {
 //   $exitCode = Artisan::call('migrate');
 // });
+
+Route::get('/backup', function()
+{
+  $exitCode = Artisan::call('backup:run');
+  echo "<pre>".print_r($exitCode, true);
+});

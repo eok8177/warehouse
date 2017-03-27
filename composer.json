@@ -9,7 +9,9 @@
         "laravel/framework": "5.3.*",
         "barryvdh/laravel-debugbar": "^2.3",
         "laravelcollective/html": "5.3.*",
-        "maatwebsite/excel": "^2.1"
+        "maatwebsite/excel": "^2.1",
+        "benjamincrozat/laravel-dropbox-driver": "^1.0",
+        "spatie/laravel-backup": "^3.0.0"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

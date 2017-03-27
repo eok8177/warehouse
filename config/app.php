@@ -183,6 +183,9 @@ return [
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
+        Spatie\Backup\BackupServiceProvider::class,
+        BC\Laravel\DropboxDriver\ServiceProvider::class,
+
     ],
 
     /*

@@ -23,14 +23,14 @@
   <div class="form-group">
     {!! Form::label('price', Lang::get('sklad.price'), ['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-10">
-      {!! Form::text('price', $invoice->price, ['class' => 'form-control']) !!}
+      {!! Form::text('price', $invoice->price, ['class' => 'form-control', 'onchange' => "this.value = this.value.replace(/,/g, '.')"]) !!}
     </div>
   </div>
 
     <div class="form-group">
     {!! Form::label('date', Lang::get('sklad.date'), ['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-10">
-      {!! Form::text('date', $invoice->date, ['class' => 'form-control']) !!}
+      {!! Form::text('date', $invoice->date, ['class' => 'form-control', 'id' => 'datepicker']) !!}
     </div>
   </div>
 
@@ -91,12 +91,18 @@
 @section('scripts')
 <script type="text/javascript">
 $(function () {
+  $.datepicker.setDefaults($.datepicker.regional[ "uk" ]);
+  $( "#datepicker" ).datepicker({
+      dateFormat: "yy-mm-dd",
+  });
+
   $('#suppliersList').on('click' , 'a', function(e){
     e.preventDefault();
     var id = $(this).data('id');
     var title = $(this).text();
     $('#supplier_name').text(title);
     $('#supplier_id').val(id);
+    $('#supplierSelect').modal('hide');
   });
 
   var formAddProduct = $("#addProduct");
@@ -109,6 +115,9 @@ $(function () {
       success: function(data)
       {
         $('#suppliersList').append('<li><a href="#" data-id="'+data.id+'">'+data.title+'</a></li>');
+        $('#supplier_name').text(data.title);
+        $('#supplier_id').val(data.id);
+        $('#supplierSelect').modal('hide');
       },
       error: function(data)
       {

@@ -89,8 +89,7 @@
     </tr>
   @endforeach
   <tr>
-    <td>Всього</td>
-    <td></td>
+    <td colspan="3">Всього</td>
     <td>{{(($report->sum('start_in_count') - $report->sum('start_out_count')) > 0) ? number_format($report->sum('start_in_count') - $report->sum('start_out_count'), 2, ',' ,'') : ''}}</td>
     <td>{{(($report->sum('start_in_sum') - $report->sum('start_out_sum')) > 0) ? number_format($report->sum('start_in_sum') - $report->sum('start_out_sum'), 2, ',' ,'') : ''}}</td>
     <td>{{($report->sum('in_count') > 0) ? number_format($report->sum('in_count'), 2, ',', '') : ''}}</td>

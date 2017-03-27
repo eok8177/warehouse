@@ -49,8 +49,7 @@
     </tr>
   @endforeach
   <tr>
-    <td>Всього</td>
-    <td></td>
+    <td colspan="3">Всього</td>
     <td>{{$report->sum('start_in_count') - $report->sum('start_out_count')}}</td>
     <td>{{$report->sum('start_in_sum') - $report->sum('start_out_sum')}}</td>
     <td>{{$report->sum('in_count')}}</td>

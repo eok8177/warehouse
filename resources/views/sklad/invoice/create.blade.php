@@ -23,7 +23,7 @@
   <div class="form-group">
     {!! Form::label('price', Lang::get('sklad.price'), ['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-10">
-      {!! Form::text('price', '', ['class' => 'form-control']) !!}
+      {!! Form::text('price', '', ['class' => 'form-control', 'onchange' => "this.value = this.value.replace(/,/g, '.')"]) !!}
     </div>
   </div>
 
@@ -86,12 +86,9 @@
   }
   button.left, #addProduct {float: left;}
 </style>
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 @endsection
 
 @section('scripts')
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="/js/datepicker-uk.js"></script>
 <script type="text/javascript">
 $(function () {
   $.datepicker.setDefaults($.datepicker.regional[ "uk" ]);
@@ -105,6 +102,7 @@ $(function () {
     var title = $(this).text();
     $('#supplier_name').text(title);
     $('#supplier_id').val(id);
+    $('#supplierSelect').modal('hide');
   });
 
   var formAddProduct = $("#addProduct");
@@ -117,6 +115,9 @@ $(function () {
       success: function(data)
       {
         $('#suppliersList').append('<li><a href="#" data-id="'+data.id+'">'+data.title+'</a></li>');
+        $('#supplier_name').text(data.title);
+        $('#supplier_id').val(data.id);
+        $('#supplierSelect').modal('hide');
       },
       error: function(data)
       {

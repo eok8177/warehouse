@@ -52,6 +52,11 @@ class InvoiceController extends Controller
     {
         $invoice->update($request->all());
 
+        foreach ($invoice->products as $incoming) {
+            $incoming->date = $invoice->date;
+            $incoming->save();
+        }
+
         return redirect()->route('sklad.invoice.show', ['invoice' => $invoice]);
     }
 

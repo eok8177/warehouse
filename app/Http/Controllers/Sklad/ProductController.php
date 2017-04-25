@@ -38,7 +38,10 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request, Product $product)
     {
-        $product = $product->create($request->all());
+        $request_product = $request->all();
+        $request_product['bill_id'] = (array_key_exists('bill_id', $request_product)) ? $request_product['bill_id'] : 99;
+
+        $product = $product->create($request_product);
 
         if($request->ajax()){
             $response = [

@@ -26,6 +26,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
+      <th>@lang('sklad.bill')</th>
       <th>@lang('sklad.title')</th>
       <th>@lang('sklad.measure')</th>
       <th>@lang('sklad.quantity')</th>
@@ -37,11 +38,18 @@
 
   @foreach($incomings as $incoming)
   <tr>
+    <td>{{$incoming->product->bill->title}}</td>
     <td>{{$incoming->product->title}}</td>
     <td>{{$incoming->product->measure}}</td>
-    <td>{{$incoming->count}}</td>
-    <td>{{$incoming->price}}</td>
-    <td>{{$incoming->sum}}</td>
+    <td>
+      {{($incoming->count > 0) ? number_format($incoming->count, 2 ,',' ,'') : ''}}
+    </td>
+    <td>
+      {{($incoming->price > 0) ? number_format($incoming->price, 2 ,',' ,'') : ''}}
+    </td>
+    <td>
+      {{($incoming->sum > 0) ? number_format($incoming->sum, 2 ,',' ,'') : ''}}
+    </td>
     <td>
       @if (count($incoming->product->outcoming) == 0 OR count($incoming->product->outcoming->where('date', '>=', $incoming->date)) == 0)
       <a href="{{ route('sklad.incoming.destroy', ['id'=>$incoming->id]) }}" class="btn fa fa-trash-o delete"></a>

@@ -70,6 +70,13 @@
           </div>
 
           <div class="form-group">
+            {!! Form::label('bill_id', Lang::get('sklad.bill'), ['class' => 'col-md-2 control-label']) !!}
+            <div class="col-md-10">
+              {!! Form::select('bill_id', $bills, false, ['class' => 'form-control']) !!}
+            </div>
+          </div>
+
+          <div class="form-group">
             {!! Form::submit(Lang::get('sklad.save')) !!}
           </div>
           {!! Form::close() !!}

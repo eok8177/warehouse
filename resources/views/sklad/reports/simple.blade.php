@@ -34,6 +34,9 @@
     </tr>
   </thead>
   @foreach($report as $key => $item)
+  @php
+      if (($item->start_in_count - $item->start_out_count) == 0 AND ($item->end_in_count - $item->end_out_count) == 0 AND $item->out_count == 0 AND $item->in_count == 0) continue;
+  @endphp
     <tr>
       <td>{{$item->bill}}</td>
       <td>{{$item->title}}</td>

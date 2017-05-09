@@ -185,6 +185,7 @@ class ReportController extends Controller
         $excelArray[] = $titleArray1;
 
         foreach ($report as $key => $item) {
+            if (($item->start_in_count - $item->start_out_count) == 0 AND ($item->end_in_count - $item->end_out_count) == 0 AND $item->out_count == 0 AND $item->in_count == 0) continue;
             $array = [];
 
             $array[] = $item->bill;

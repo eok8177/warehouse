@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Sklad;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Model\Sklad\Bill;
 use App\Model\Sklad\Incoming;
 use App\Http\Requests\IncomingRequest;
 use App\Model\Sklad\Product;
@@ -17,6 +18,7 @@ class IncomingController extends Controller
         $returnHTML = view('sklad.incoming.create', [
             'invoice' => $invoice,
             'products' => Product::orderBy('title', 'asc')->get(),
+            'bills' => Bill::forSelect(),
             ])->render();
 
         return response()->json(array('success' => true, 'html'=>$returnHTML));

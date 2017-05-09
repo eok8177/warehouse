@@ -72,6 +72,42 @@ Route::group(['as' => 'sklad.', 'middleware' => 'roles','roles' =>['admin', 'skl
 
 });
 
+// Apteka
+
+Route::group(['as' => 'apteka.', 'middleware' => 'roles','roles' =>['admin', 'apteka'], 'namespace' => 'Apteka', 'prefix' => 'apteka'], function() {
+
+  Route::get('/', 'DashboardController@index');
+
+  Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'DashboardController@index']);
+
+  Route::resource('invoice',  'InvoiceController');
+  Route::resource('product',  'ProductController');
+
+// Catalogs
+  Route::resource('bill',     'BillController');
+  Route::resource('client',   'ClientController');
+  Route::resource('supplier', 'SupplierController');
+
+// Incoming
+  Route::get('incoming/{invoice}', ['as' => 'incoming.create', 'uses' => 'IncomingController@create']);
+  Route::post('incoming', ['as' => 'incoming', 'uses' => 'IncomingController@store']);
+  Route::delete('incoming/{incoming}', ['as' => 'incoming.destroy', 'uses' => 'IncomingController@destroy']);
+
+// Outcoming
+  Route::get('outcoming/{product}',      ['as' => 'outcoming.create', 'uses' => 'OutcomingController@create']);
+  Route::get('outcoming/{outcoming}/edit', ['as' => 'outcoming.edit', 'uses' => 'OutcomingController@edit']);
+  Route::post('outcoming',               ['as' => 'outcoming.store', 'uses' => 'OutcomingController@store']);
+  Route::delete('outcoming/{outcoming}', ['as' => 'outcoming.destroy', 'uses' => 'OutcomingController@destroy']);
+  Route::put('outcoming/{outcoming}', ['as' => 'outcoming.update', 'uses' => 'OutcomingController@update']);
+
+// Reports
+  Route::get('report',  ['as' => 'report.index',  'uses' => 'ReportController@index']);
+  Route::post('report', ['as' => 'report.simple', 'uses' => 'ReportController@simple']);
+  Route::post('report/full', ['as' => 'report.full', 'uses' => 'ReportController@full']);
+  Route::get('report/excel/{from}/{to}/{type}', ['as' => 'report.excel', 'uses' => 'ReportController@excel']);
+
+});
+
 // Frontend
 
 Route::get('/', function () {

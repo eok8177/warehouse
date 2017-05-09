@@ -52,6 +52,7 @@
                                 <li><a href="{{ route('backend.dashboard') }}">@lang('messages.comp')</a></li>
                             @endif
                             <li><a href="{{ route('sklad.dashboard') }}">@lang('sklad.sklad')</a></li>
+                            <li><a href="{{ route('apteka.dashboard') }}">@lang('apteka.apteka')</a></li>
                             
                         @endif
                     </ul>

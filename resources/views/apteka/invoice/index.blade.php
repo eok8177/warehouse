@@ -9,7 +9,7 @@
   <thead>
     <tr>
       <th>id</th>
-      <th>Action</th>
+      <th>@lang('apteka.action')</th>
       <th>@lang('apteka.invoice_title')</th>
       <th>@lang('apteka.supplier')</th>
       <th>@lang('apteka.price')</th>

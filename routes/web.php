@@ -58,7 +58,7 @@ Route::group(['as' => 'sklad.', 'middleware' => 'roles','roles' =>['admin', 'skl
   Route::delete('incoming/{incoming}', ['as' => 'incoming.destroy', 'uses' => 'IncomingController@destroy']);
 
 // Outcoming
-  Route::get('outcoming/{product}',      ['as' => 'outcoming.create', 'uses' => 'OutcomingController@create']);
+  Route::get('outcoming/create/{product}',      ['as' => 'outcoming.create', 'uses' => 'OutcomingController@create']);
   Route::get('outcoming/{outcoming}/edit', ['as' => 'outcoming.edit', 'uses' => 'OutcomingController@edit']);
   Route::post('outcoming',               ['as' => 'outcoming.store', 'uses' => 'OutcomingController@store']);
   Route::delete('outcoming/{outcoming}', ['as' => 'outcoming.destroy', 'uses' => 'OutcomingController@destroy']);
@@ -74,7 +74,7 @@ Route::group(['as' => 'sklad.', 'middleware' => 'roles','roles' =>['admin', 'skl
 
 // Apteka
 
-Route::group(['as' => 'apteka.', 'middleware' => 'roles','roles' =>['admin', 'apteka'], 'namespace' => 'Apteka', 'prefix' => 'apteka'], function() {
+Route::group(['as' => 'apteka.', 'middleware' => 'roles','roles' =>['admin', 'sklad'], 'namespace' => 'Apteka', 'prefix' => 'apteka'], function() {
 
   Route::get('/', 'DashboardController@index');
 
@@ -94,7 +94,7 @@ Route::group(['as' => 'apteka.', 'middleware' => 'roles','roles' =>['admin', 'ap
   Route::delete('incoming/{incoming}', ['as' => 'incoming.destroy', 'uses' => 'IncomingController@destroy']);
 
 // Outcoming
-  Route::get('outcoming/{product}',      ['as' => 'outcoming.create', 'uses' => 'OutcomingController@create']);
+  Route::get('outcoming/create/{product}/{incoming}',      ['as' => 'outcoming.create', 'uses' => 'OutcomingController@create']);
   Route::get('outcoming/{outcoming}/edit', ['as' => 'outcoming.edit', 'uses' => 'OutcomingController@edit']);
   Route::post('outcoming',               ['as' => 'outcoming.store', 'uses' => 'OutcomingController@store']);
   Route::delete('outcoming/{outcoming}', ['as' => 'outcoming.destroy', 'uses' => 'OutcomingController@destroy']);

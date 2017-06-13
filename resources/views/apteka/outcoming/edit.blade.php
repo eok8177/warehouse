@@ -10,6 +10,9 @@
           <tr>
             <th>@lang('apteka.title')</th>
             <th>@lang('apteka.measure')</th>
+            <th>@lang('apteka.cert')</th>
+            <th>@lang('apteka.serial')</th>
+            <th>@lang('apteka.expire')</th>
             <th>@lang('apteka.quantity')</th>
             <th>@lang('apteka.averageprice')</th>
           </tr>
@@ -17,6 +20,9 @@
         <tr>
           <td>{{$outcoming->product->title}}</td>
           <td>{{$outcoming->product->measure}}</td>
+          <td>{{$outcoming->incoming->cert}}</td>
+          <td>{{$outcoming->incoming->serial}}</td>
+          <td>{{$outcoming->incoming->expire}}</td>
           <td>{{$outcoming->product->quantity}}</td>
         </tr>
       </table>
@@ -41,6 +47,7 @@
             </div>
 
             {!! Form::hidden('product_id', $outcoming->product->id, ['class' => 'form-control']) !!}
+            {!! Form::hidden('incoming_id', $outcoming->incoming_id, ['class' => 'form-control']) !!}
 
             <div class="form-group">
               {!! Form::label('count', Lang::get('apteka.count'), ['class' => 'col-md-6 control-label']) !!}

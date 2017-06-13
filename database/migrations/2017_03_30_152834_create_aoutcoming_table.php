@@ -25,6 +25,9 @@ class CreateAoutcomingTable extends Migration
             $table->unsignedInteger('client_id');
             $table->foreign('client_id')->references('id')->on('a_clients');
 
+            $table->unsignedInteger('incoming_id');
+            $table->foreign('incoming_id')->references('id')->on('a_incoming');
+
             $table->decimal('count', 12, 2);
             $table->decimal('sum', 20, 8)->nullable();
             $table->date('date')->nullable();

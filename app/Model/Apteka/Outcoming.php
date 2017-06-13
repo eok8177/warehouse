@@ -19,6 +19,7 @@ class Outcoming extends Model
     protected $fillable = [
         'client_id',
         'product_id',
+        'incoming_id',
         'count',
         'sum',
         'date',
@@ -39,5 +40,13 @@ class Outcoming extends Model
     public function product()
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
+    }
+
+    /**
+     * Get the incoming for the outcoming.
+     */
+    public function incoming()
+    {
+        return $this->hasOne(Incoming::class, 'id', 'incoming_id');
     }
 }

@@ -7,7 +7,7 @@
   <div class="form-group">
     {!! Form::label('title', Lang::get('apteka.client_title'), ['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-10">
-      {!! Form::text('title', $client->title, ['class' => 'form-control']) !!}
+      {!! Form::text('title', null, ['class' => 'form-control']) !!}
     </div>
   </div>
 

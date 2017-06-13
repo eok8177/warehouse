@@ -27,6 +27,7 @@ class CreateAincomingTable extends Migration
             $table->date('expire')->nullable();
 
             $table->decimal('count', 12, 2);
+            $table->decimal('rest', 12, 2);
             $table->decimal('price', 20, 8)->nullable();
             $table->decimal('sum', 20, 8)->nullable();
             $table->date('date')->nullable();

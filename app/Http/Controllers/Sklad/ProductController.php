@@ -16,11 +16,14 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $bill = $request->input('bill', 0);
+        $rest = $request->input('rest', 1);
         $title = $request->input('title', false);
 
         $bills = Bill::all();
 
         $items = Product::with('bill', 'incoming', 'outcoming')->orderBy('title', 'asc');
+
+        if ($rest != 0) $items->where('quantity','>',0);
 
         if ($bill > 0) $items = $items->where('bill_id', '=', $bill);
         if ($title) $items = $items->where('title', 'LIKE', '%'.$title.'%');

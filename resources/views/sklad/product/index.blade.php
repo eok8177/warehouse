@@ -5,7 +5,7 @@
 
   <span>@lang('sklad.bill'): </span>
 <div class="btn-group" role="group">
-  <a href="{{ route('sklad.product.index') }}" class="btn btn-default">@lang('sklad.all')</a>
+  <a href="{{ route('sklad.product.index') }}?rest=0" class="btn btn-default">@lang('sklad.all')</a>
   @foreach($bills as $bill)
   <a href="{{ route('sklad.product.index') }}?bill={{$bill->id}}" class="btn btn-default"  data-toggle="tooltip" data-placement="top" title="{{$bill->description}}">{{$bill->title}}</a>
   @endforeach
@@ -13,7 +13,8 @@
 <form class="form-inline pull-right" action="" method="get">
   <div class="form-group">
     <input type="hidden" name="bill" value="{{app('request')->input('bill')}}">
-     <input type="text" class="form-control" id="title" name="title" placeholder="{{app('request')->input('title')}}">
+    <input type="hidden" name="rest" value="{{app('request')->input('rest')}}">
+    <input type="text" class="form-control" id="title" name="title" placeholder="{{app('request')->input('title')}}">
   </div>
   <button type="submit" class="btn btn-default">@lang('sklad.search')</button>
 </form>

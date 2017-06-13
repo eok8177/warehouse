@@ -9,6 +9,7 @@ use App\Model\Apteka\Incoming;
 use App\Http\Requests\IncomingRequest;
 use App\Model\Apteka\Product;
 use App\Model\Apteka\Invoice;
+use App\Model\Apteka\Bill;
 
 class IncomingController extends Controller
 {
@@ -17,6 +18,7 @@ class IncomingController extends Controller
         $returnHTML = view('apteka.incoming.create', [
             'invoice' => $invoice,
             'products' => Product::orderBy('title', 'asc')->get(),
+            'bills' => Bill::forSelect(),
             ])->render();
 
         return response()->json(array('success' => true, 'html'=>$returnHTML));
@@ -26,6 +28,7 @@ class IncomingController extends Controller
     {
         $newIncoming = $request->all();
         $newIncoming['sum'] = $newIncoming['price'] * $newIncoming['count'];
+        $newIncoming['rest'] = $newIncoming['count'];
         $incoming = $incoming->create($newIncoming);
 
         $incoming->product->quantity += $incoming->count;

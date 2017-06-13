@@ -10,20 +10,31 @@ use App\Model\Apteka\Product;
 use App\Http\Requests\ProductRequest;
 use App\Model\Apteka\Incoming;
 use App\Http\Requests\IncomingRequest;
+use App\Model\Apteka\Outcoming;
 
 class ProductController extends Controller
 {
     public function index(Request $request)
     {
         $bill = $request->input('bill', 0);
+        $rest = $request->input('rest', 1);
         $title = $request->input('title', false);
 
         $bills = Bill::all();
 
-        $items = Product::with('bill', 'incoming', 'outcoming')->orderBy('title', 'asc');
+        $items = Incoming::with('product', 'outcoming')->orderBy('product_id', 'asc');
 
-        if ($bill > 0) $items = $items->where('bill_id', '=', $bill);
-        if ($title) $items = $items->where('title', 'LIKE', '%'.$title.'%');
+        if ($rest != 0) $items->where('rest','>',0);
+
+        if ($bill > 0)
+            $items->whereHas('product', function ($query) use($bill) {
+                $query->where('bill_id', '=', $bill);
+            });
+
+        if ($title)
+            $items->whereHas('product', function ($query) use($title) {
+                $query->where('title', 'LIKE', '%'.$title.'%');
+            });
 
         return view('apteka.product.index', [
             'items' => $items->get(),

@@ -42,6 +42,7 @@
             </div>
 
             {!! Form::hidden('product_id', $product->id, ['class' => 'form-control']) !!}
+            {!! Form::hidden('incoming_id', $incoming, ['class' => 'form-control']) !!}
 
             <div class="form-group">
               {!! Form::label('count', Lang::get('apteka.count'), ['class' => 'col-md-6 control-label']) !!}

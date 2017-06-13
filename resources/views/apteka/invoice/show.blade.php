@@ -29,6 +29,9 @@
       <th>@lang('apteka.bill')</th>
       <th>@lang('apteka.title')</th>
       <th>@lang('apteka.measure')</th>
+      <th>@lang('apteka.cert')</th>
+      <th>@lang('apteka.serial')</th>
+      <th>@lang('apteka.expire')</th>
       <th>@lang('apteka.quantity')</th>
       <th>@lang('apteka.price')</th>
       <th>@lang('apteka.sum')</th>
@@ -41,6 +44,9 @@
     <td>{{$incoming->product->bill->title}}</td>
     <td>{{$incoming->product->title}}</td>
     <td>{{$incoming->product->measure}}</td>
+    <td>{{$incoming->cert}}</td>
+    <td>{{$incoming->serial}}</td>
+    <td>{{$incoming->expire}}</td>
     <td>
       {{($incoming->count > 0) ? number_format($incoming->count, 2 ,',' ,'') : ''}}
     </td>
@@ -51,11 +57,12 @@
       {{($incoming->sum > 0) ? number_format($incoming->sum, 2 ,',' ,'') : ''}}
     </td>
     <td>
-      @if (count($incoming->product->outcoming) == 0 OR count($incoming->product->outcoming->where('date', '>=', $incoming->date)) == 0)
+      <a href="{{ route('apteka.product.show', ['id'=>$incoming->product->id]) }}" class="btn fa fa-eye" data-toggle="tooltip" data-placement="top" title="@lang('apteka.show')"></a>
+      @if (count($incoming->outcoming) == 0)
       <a href="{{ route('apteka.incoming.destroy', ['id'=>$incoming->id]) }}" class="btn fa fa-trash-o delete"></a>
       @endif
-      @if ($incoming->product->quantity > 0)
-      <a href="{{ route('apteka.outcoming.create', ['id'=>$incoming->product->id]) }}" class="ajax btn fa fa-sign-out" data-toggle="modal" data-target="#outcoming" title="@lang('apteka.out')"></a>
+      @if ($incoming->rest > 0)
+      <a href="{{ route('apteka.outcoming.create', ['id'=>$incoming->product->id, 'incoming'=>$incoming->id]) }}" class="ajax btn fa fa-sign-out" data-toggle="modal" data-target="#outcoming" title="@lang('apteka.out')"></a>
       @endif
     </td>
   </tr>

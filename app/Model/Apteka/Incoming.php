@@ -20,6 +20,7 @@ class Incoming extends Model
         'invoice_id',
         'product_id',
         'count',
+        'rest',
         'price',
         'sum',
         'date',
@@ -43,5 +44,13 @@ class Incoming extends Model
     public function product()
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
+    }
+
+    /**
+     * Get the Outcoming in the the Incoming.
+     */
+    public function outcoming()
+    {
+        return $this->hasMany(Outcoming::class);
     }
 }

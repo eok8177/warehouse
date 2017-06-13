@@ -12,11 +12,12 @@ use App\Model\Apteka\Client;
 
 class OutcomingController extends Controller
 {
-    public function create(Product $product)
+    public function create(Product $product, $incoming)
     {
         $returnHTML = view('apteka.outcoming.create', [
             'product' => $product,
             'clients' => Client::orderBy('title', 'asc')->get(),
+            'incoming' => $incoming,
             ])->render();
 
         return response()->json(array('success' => true, 'html'=>$returnHTML));
@@ -31,6 +32,9 @@ class OutcomingController extends Controller
         $outcoming->product->quantity -= $outcoming->count;
         $outcoming->product->sum -= $sum;
         $outcoming->product->save();
+
+        $outcoming->incoming->rest -= $outcoming->count;
+        $outcoming->incoming->save();
 
         $outcoming->sum = $sum;
         $outcoming->save();
@@ -55,6 +59,8 @@ class OutcomingController extends Controller
         $outcoming->product->quantity += $outcoming->count;
         $outcoming->product->sum += $outcoming->sum;
 
+        $outcoming->incoming->rest += $outcoming->count;
+
         $outcoming->update($request->all());
         $outcoming->sum = $outcoming->count * $price;
         $outcoming->save();
@@ -62,6 +68,9 @@ class OutcomingController extends Controller
         $outcoming->product->quantity -= $outcoming->count;
         $outcoming->product->sum -= $outcoming->sum;
         $outcoming->product->save();
+
+        $outcoming->incoming->rest -= $outcoming->count;
+        $outcoming->incoming->save();
 
         return redirect()->route('apteka.product.show', ['id' => $outcoming->product->id]);
     }
@@ -71,6 +80,9 @@ class OutcomingController extends Controller
         $outcoming->product->quantity += $outcoming->count;
         $outcoming->product->sum += $outcoming->sum;
         $outcoming->product->save();
+
+        $outcoming->incoming->rest += $outcoming->count;
+        $outcoming->incoming->save();
 
         $outcoming->delete();
 

@@ -24,9 +24,14 @@
 
       <!-- Right Side Of Navbar -->
       <ul class="nav navbar-nav navbar-right">
+
+        <li><a href="{{ route('backend.dashboard') }}">@lang('messages.dashboard')</a></li>
+        <li><a href="{{ route('backend.lpz.index') }}">@lang('messages.lpz')</a></li>
+        <li><a href="{{ route('backend.work.index') }}">@lang('messages.work')</a></li>
+
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-            {{ Auth::user()->username }} <span class="caret"></span>
+            {{ Auth::user()->name }} <span class="caret"></span>
           </a>
 
           <ul class="dropdown-menu" role="menu">

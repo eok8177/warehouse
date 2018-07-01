@@ -25,9 +25,7 @@
     @include('backend.navbar')
 
     <div class="container-fluid">
-      <div class="col-md-2">@include('backend.sidebar')</div>
-
-      <div class="col-md-10">@yield('content')</div>
+      @yield('content')
     </div>
   </div>
 

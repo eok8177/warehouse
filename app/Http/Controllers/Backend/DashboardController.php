@@ -27,7 +27,7 @@ class DashboardController extends Controller
     public function index()
     {
         return view('backend.dashboard.index', [
-            'works' => Work::orderBy('id', 'desc')->limit(50)->get(),
+            'works' => Work::orderBy('id', 'desc')->paginate(15),
             ]);
     }
 }

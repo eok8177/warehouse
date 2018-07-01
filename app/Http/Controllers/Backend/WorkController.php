@@ -15,13 +15,15 @@ class WorkController extends Controller
 {
     public function index()
     {
-        return view('backend.work.index', ['items' => Work::all()]);
+        return view('backend.work.index', [
+            'items' => Work::orderBy('id', 'desc')->paginate(50)]
+        );
     }
 
     public function create()
     {
         return view('backend.work.create', [
-            'lpz' => Lpz::pluck('name', 'id')->all(),
+            'lpz' => Lpz::orderBy('name', 'asc')->pluck('name', 'id')->all(),
             'cat' => WorkCategories::pluck('name', 'id')->all(),
             ]);
     }
@@ -42,7 +44,7 @@ class WorkController extends Controller
     {
         return view('backend.work.edit', [
             'work' => $work,
-            'lpz' => Lpz::pluck('name', 'id')->all(),
+            'lpz' => Lpz::orderBy('name', 'asc')->pluck('name', 'id')->all(),
             'cat' => WorkCategories::pluck('name', 'id')->all(),
             ]);
     }

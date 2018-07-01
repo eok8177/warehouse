@@ -69,6 +69,7 @@ Route::group(['as' => 'sklad.', 'middleware' => 'roles','roles' =>['admin', 'skl
   Route::post('report', ['as' => 'report.simple', 'uses' => 'ReportController@simple']);
   Route::post('report/full', ['as' => 'report.full', 'uses' => 'ReportController@full']);
   Route::get('report/excel/{from}/{to}/{type}', ['as' => 'report.excel', 'uses' => 'ReportController@excel']);
+  Route::get('report/excelsheets/{from}/{to}', ['as' => 'report.excelsheets', 'uses' => 'ReportController@excelsheets']);
 
 });
 
@@ -128,5 +129,5 @@ Route::get('/home', 'HomeController@index');
 Route::get('/backup', function()
 {
   $exitCode = Artisan::call('backup:run');
-  echo "<pre>".print_r($exitCode, true);
+  // echo "<pre>".print_r($exitCode, true);
 });
